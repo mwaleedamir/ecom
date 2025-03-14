@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import NavLinks from '../components/NavLinks'
 import Sidebar from '../components/Sidebar'
-import Cards1 from '../components/Cards1'
+import Cards2 from '../components/Cards2'
 import Filters from '../components/Filters'
 
 const FilterLanding = () => {
@@ -14,7 +14,7 @@ const FilterLanding = () => {
             <Sidebar/>
             <div className=''>
             <Filters/>
-            <Cards1/>
+            <Cards2/>
             </div>
         </div>
       

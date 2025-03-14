@@ -5,7 +5,6 @@ const Sidebar = () => {
    const lists = [
     { id: 1, name: "price" },
     { id: 2, name: "brand" },
-    { id: 3, name: "price" }
   ];
   return (
     <div className="flex">

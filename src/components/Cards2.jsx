@@ -1,13 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import i1 from "../assets/i1.jpg";
+import nike1 from "../assets/nike1.jpg";
+import nike2 from "../assets/nike2.jpg";
+import nike3 from "../assets/nike3.jpg";
+import nike4 from "../assets/nike4.jpg";
+import nike6 from "../assets/nike6.jpg";
+import g1 from "../assets/g1.jpg";
+import g2 from "../assets/g2.jpg";
+import g3 from "../assets/g3.jpg";
+import g4 from "../assets/g4.jpg";
+import g5 from "../assets/g5.jpg";
+import a1 from "../assets/a1.jpg";
+import a2 from "../assets/a2.jpg";
+import a3 from "../assets/a3.jpg";
 import Cards from "../utils/Cards";
+import { useData } from "../CreateCart";
 
-const Cards1 = () => {
+
+const Cards2 = () => {
+  // const [filter, setFilter]= useState([])
+    const { 
+        items, 
+        addItem,
+        selectedFilter,
+      } = useData();
+
+      console.log("selectedFilter",selectedFilter)
+
+    console.log("carts in cards ",items)
+   
   const cards = [
     {
       id: 1,
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
-      img: i1,
+      img: nike1,
       price: 21,
       uprice: 23,
       persent: "60%",
@@ -16,7 +42,7 @@ const Cards1 = () => {
     {
       id: 2,
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
-      img: i1,
+      img: nike2,
       price: 21,
       uprice: 23,
       persent: "60%",
@@ -25,7 +51,7 @@ const Cards1 = () => {
     {
       id: 3,
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
-      img: i1,
+      img: nike3,
       price: 21,
       uprice: 23,
       persent: "60%",
@@ -34,7 +60,7 @@ const Cards1 = () => {
     {
       id: 4,
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
-      img: i1,
+      img: nike4,
       price: 21,
       uprice: 23,
       persent: "60%",
@@ -43,7 +69,7 @@ const Cards1 = () => {
     {
       id: 5,
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
-      img: i1,
+      img: g1,
       price: 21,
       uprice: 23,
       persent: "60%",
@@ -52,7 +78,7 @@ const Cards1 = () => {
     {
       id: 6,
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
-      img: i1,
+      img: g2,
       price: 21,
       uprice: 23,
       persent: "60%",
@@ -61,7 +87,7 @@ const Cards1 = () => {
     {
       id: 7,
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
-      img: i1,
+      img: g3,
       price: 21,
       uprice: 23,
       persent: "60%",
@@ -70,7 +96,7 @@ const Cards1 = () => {
     {
       id: 8,
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
-      img: i1,
+      img: g4,
       price: 21,
       uprice: 23,
       persent: "60%",
@@ -79,7 +105,7 @@ const Cards1 = () => {
     {
       id: 9,
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
-      img: i1,
+      img: g5,
       price: 21,
       uprice: 23,
       persent: "60%",
@@ -88,7 +114,7 @@ const Cards1 = () => {
     {
       id: 10,
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
-      img: i1,
+      img: nike6,
       price: 21,
       uprice: 23,
       persent: "60%",
@@ -106,7 +132,25 @@ const Cards1 = () => {
     {
       id: 12,
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
-      img: i1,
+      img: a1,
+      price: 21,
+      uprice: 23,
+      persent: "60%",
+      link: "/filter"
+    },
+    {
+      id: 13,
+      desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
+      img: a2,
+      price: 21,
+      uprice: 23,
+      persent: "60%",
+      link: "/filter"
+    },
+    {
+      id: 14,
+      desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
+      img: a3,
       price: 21,
       uprice: 23,
       persent: "60%",
@@ -114,13 +158,25 @@ const Cards1 = () => {
     }
   ];
 
-  const className = { className: "p-2 grid grid-cols-6 gap-3 " };
+  useEffect(()=>{
+    addItem(cards[0])
+  },[])
 
+  // const filteredarray = cards.filter((card) => {
+  //   const matchingFilter = selectedFilter.find((filter) => filter.id === card.id);
+  //   return matchingFilter ? card.price <= matchingFilter.maxPrice : false;
+  // });
+
+  const filteredarray = cards.filter((card) => card.price <= selectedFilter)
+
+  console.log("filtered array ",filteredarray)
+  console.log("selcted ",selectedFilter[0]?.minPrice)
+  const className = { className: "p-2 grid grid-cols-5 gap-3 " };
   return (
     <div className="bg-gray-100">
-      <Cards cards={cards} className={className} />
+      <Cards className={className} cards={cards} />
     </div>
   );
 };
 
-export default Cards1;
+export default Cards2;
