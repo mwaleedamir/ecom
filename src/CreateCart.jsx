@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext } from 'react';
+import { v4 as uuidv4 } from "uuid";
 
 const DataContext = createContext();
 
@@ -14,22 +15,28 @@ export const DataProvider = ({ children }) => {
 
   const [items, setItems] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState([]);
+  const [filteredItems ,setFilteredItems ]= useState([])
   
   const addItem = (newItem) => {
-    setItems(prevItems => [...prevItems, { ...newItem}]);
+    setItems(prevItems => [...prevItems, { ...newItem, id:uuidv4()}]);
   };
-  // id: Date.now() 
+
   const filters = (newFilter) =>{
-    console.log("new Filter",newFilter)
-    setSelectedFilter(selectedFilter => [
-      ...selectedFilter, { ...newFilter }])
+    setSelectedFilter(selectedFilter => 
+    [ ...selectedFilter,  {...newFilter }])
+  }
+
+  const addFilteredItems = (newItems) => {
+    setFilteredItems(prevItems => [...prevItems,{...newItems ,id:uuidv4()}])
   }
 
   const value = {
     items,
+    addItem,
     selectedFilter,
     filters,
-    addItem,
+    filteredItems,
+    addFilteredItems,
   };
   
   return (

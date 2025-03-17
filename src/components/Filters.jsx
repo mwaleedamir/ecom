@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { RxCross1 } from "react-icons/rx";
+import { v4 as uuidv4 } from "uuid";
 
 const Filters = () => {
   const [toggle, setToggle] = useState(false);
@@ -9,15 +10,15 @@ const Filters = () => {
   };
 
   const lists = [
-    { id: 1, name: "Generic" },
-    { id: 2, name: "Adidas" },
-    { id: 3, name: "Nike" },
-    { id: 4, name: "Shoes" }
+    {  name: "Generic" },
+    {  name: "Adidas" },
+    {  name: "Nike" },
+    {  name: "Shoes" }
   ];
   return (
-    <div className="flex  items-center gap-4 mx-5 my-10 ">
+    <div className="flex items-center gap-4 mx-5 my-10 ">
       {lists.map(list =>
-        <button
+        <button key={uuidv4()}
           onClick={() => funcToggle()}
           className="flex items-center justify-between border-0 px-5 py-1 rounded-md bg-gray-100"
         >
