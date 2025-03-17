@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import NavLinks from "../components/NavLinks";
 import NavbarCarousel from "../components/NavCarousel";
 import NavImages from "../components/NavImages";
-import Cards1 from "../components/Cards1";
+import FrontPageCards from "../components/FrontPageCards";
 const MainLanding = () => {
   return (
     <div>
@@ -11,7 +11,7 @@ const MainLanding = () => {
       <NavLinks />
       <NavbarCarousel />
       <NavImages />
-      <Cards1 />
+      <FrontPageCards />
     </div>
   );
 };

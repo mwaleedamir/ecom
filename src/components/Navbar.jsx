@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { SlBasket, SlHeart } from "react-icons/sl";
 import { IoPersonOutline } from "react-icons/io5";
 
-// import flag from "../assets/flag.svg"
+import flag from "../assets/flag.svg"
 
 
 const Navbar = () => {
@@ -12,10 +12,10 @@ const Navbar = () => {
         
         <div className="flex gap-0.5">
             <img src={flag} alt="flag" />
-            {/* <div className="flex flex-col">
+            <div className="flex flex-col">
                 <p className='text-sm' > Deliver to</p>
                 <p className='text-sm font-bold flex gap-0.5'> Dubai</p>
-            </div> */}
+            </div>
         </div>
         <input type="text" placeholder="What are you looking for ?" className='lg:w-[60%] md:w-[50%] xl:w-[60%] p-2 border-none  outline-0 bg-white text-gray-500 rounded-sm ' name="" id="" />
         <p>lang</p>

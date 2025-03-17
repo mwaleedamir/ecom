@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
-const Cards = ({ cards, className, filteredArray }) => {
+const Cards = ({ cards, className}) => {
   return (
     <div className={className.className}>
       {cards.map(card =>

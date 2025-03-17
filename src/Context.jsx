@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext } from 'react';
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 
 const DataContext = createContext();
 
@@ -16,20 +16,35 @@ export const DataProvider = ({ children }) => {
   const [items, setItems] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState([]);
   const [filteredItems ,setFilteredItems ]= useState([])
-  
+  const [priceFilter ,setPriceFilter ] =useState({
+    minPrice:"",
+    maxPrice:"",
+  })
+  const [slider ,setSlider ]= useState({rating:""})
+  // , id:uuidv4()
+
   const addItem = (newItem) => {
-    setItems(prevItems => [...prevItems, { ...newItem, id:uuidv4()}]);
+    setItems(prevItems => [...prevItems, { ...newItem}]);
   };
 
   const filters = (newFilter) =>{
-    setSelectedFilter(selectedFilter => 
-    [ ...selectedFilter,  {...newFilter }])
+    if(!selectedFilter.includes(newFilter)){
+      setSelectedFilter(selectedFilter => 
+        [ ...selectedFilter,  newFilter ])
+      }
   }
-
+ 
   const addFilteredItems = (newItems) => {
-    setFilteredItems(prevItems => [...prevItems,{...newItems ,id:uuidv4()}])
+    setFilteredItems(prevItems => [...prevItems,{...newItems }])
   }
 
+  const addPriceFilter =(Price) =>{
+    setPriceFilter(prevprice => ({ ...prevprice , minPrice: Price.minPrice , maxPrice: Price.maxPrice}))
+  }
+
+  const addSliderFilter = (slide) => {
+    setSlider(prev => ({...prev , rating:slide}))
+  }
   const value = {
     items,
     addItem,
@@ -37,6 +52,10 @@ export const DataProvider = ({ children }) => {
     filters,
     filteredItems,
     addFilteredItems,
+    priceFilter,
+    addPriceFilter,
+    addSliderFilter,
+    slider
   };
   
   return (

@@ -2,7 +2,7 @@ import React from "react";
 import i1 from "../assets/i1.jpg";
 import Cards from "../utils/Cards";
 
-const Cards1 = () => {
+const FrontPageCards = () => {
   const cards = [
     {
       id: 1,
@@ -123,4 +123,4 @@ const Cards1 = () => {
   );
 };
 
-export default Cards1;
+export default FrontPageCards;

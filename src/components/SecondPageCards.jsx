@@ -14,166 +14,194 @@ import a1 from "../assets/a1.jpg";
 import a2 from "../assets/a2.jpg";
 import a3 from "../assets/a3.jpg";
 import Cards from "../utils/Cards";
-import { useData } from "../CreateCart";
- 
+import { useData } from "../Context";
 
-const Cards2 = () => {
-  const [ filteredArray,setFilterArray ] = useState(null)
+const SecondPageCards = () => {
+  const [filteredArray, setFilterArray] = useState([]);
 
-    const { 
-        items, 
-        addItem,
-        selectedFilter,
-      } = useData();
-   
+  const {
+    addItem,
+    selectedFilter,
+    priceFilter,
+    slider
+  } = useData();
+
   const cards = [
     {
-    
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
       img: nike1,
       price: 12,
       uprice: 23,
       persent: "60%",
-      link: "/filter"
+      link: "/filter",
+      rating: 0.3
     },
     {
-
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
       img: nike2,
       price: 89,
       uprice: 23,
       persent: "60%",
-      link: "/filter"
+      link: "/filter",
+      rating: 0.5
     },
     {
-
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
       img: nike3,
       price: 90,
       uprice: 23,
       persent: "60%",
-      link: "/filter"
+      link: "/filter",
+      rating: 3.3
     },
     {
- 
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
       img: nike4,
       price: 40,
       uprice: 23,
       persent: "60%",
-      link: "/filter"
+      link: "/filter",
+      rating: 3.8
     },
     {
-   
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
       img: g1,
       price: 10,
       uprice: 23,
       persent: "60%",
-      link: "/filter"
+      link: "/filter",
+      rating: 0.9
     },
     {
-      
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
       img: g2,
       price: 20,
       uprice: 23,
       persent: "60%",
-      link: "/filter"
+      link: "/filter",
+      rating: 2
     },
     {
-  
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
       img: g3,
       price: 21,
       uprice: 23,
       persent: "60%",
-      link: "/filter"
+      link: "/filter",
+      rating: 2.6
     },
     {
-     
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
       img: g4,
       price: 50,
       uprice: 23,
       persent: "60%",
-      link: "/filter"
+      link: "/filter",
+      rating: 2.1
     },
     {
- 
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
       img: g5,
       price: 40,
       uprice: 23,
       persent: "60%",
-      link: "/filter"
+      link: "/filter",
+      rating: 4
     },
     {
-    
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
       img: nike6,
       price: 30,
       uprice: 23,
       persent: "60%",
-      link: "/filter"
+      link: "/filter",
+      rating: 2.3
     },
     {
-  
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
       img: i1,
       price: 28,
       uprice: 23,
       persent: "60%",
-      link: "/filter"
+      link: "/filter",
+      rating: 3.9
     },
     {
-
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
       img: a1,
       price: 58,
       uprice: 23,
       persent: "60%",
-      link: "/filter"
+      link: "/filter",
+      rating: 1.4
     },
     {
-    
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
       img: a2,
       price: 78,
       uprice: 23,
       persent: "60%",
-      link: "/filter"
+      link: "/filter",
+      rating: 1.5
     },
     {
-     
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
       img: a3,
       price: 70,
       uprice: 23,
       persent: "60%",
-      link: "/filter"
+      link: "/filter",
+      rating: 2.4
     }
   ];
 
-  useEffect(()=>{
-    addItem(cards[0])
-  },[])
+  useEffect(() => {
+    addItem(cards[0]);
+  }, []);
 
-
-  
-  // useEffect(()=>{
-  //   setFilterArray(cards.filter((card) => card.price >= selectedFilter[0]?.minPrice && card.price <= selectedFilter[0]?.maxPrice))
-  // },[selectedFilter])
+  useEffect(
+    () => {
+      if (selectedFilter.length <= 0) {
+        setFilterArray(cards);
+      } else if (selectedFilter.includes("price")) {
+        for (let i = 0; i < selectedFilter.length; i++) {
+          if (selectedFilter[i] === "price") {
+            setFilterArray(
+              cards.filter(
+                card =>
+                  card.price >= priceFilter.minPrice &&
+                  card.price <= priceFilter.maxPrice
+              )
+            );
+          }
+        }
+      }
+      else if(selectedFilter.includes("rating")){
+        for (let i = 0; i < selectedFilter.length; i++) {
+          if (selectedFilter[i] === "rating") {
+            setFilterArray(
+              cards.filter(
+                card => card.rating === slider.value
+              )
+            )
+            console.log("Slider",slider.value)
+          }
+        }
+          
+      }
+    },
+    [selectedFilter]
+  );
 
   const className = { className: "p-2 grid grid-cols-5 gap-3" };
 
+  console.log(">>>>> filter check", filteredArray);
+
   return (
     <div className="bg-gray-100">
-      {filteredArray ?
-      <Cards className={className}  cards={filteredArray} />
-    : <Cards className={className}  cards={cards} /> }
+      <Cards className={className} cards={filteredArray} />
     </div>
   );
 };
 
-export default Cards2;
+export default SecondPageCards;
