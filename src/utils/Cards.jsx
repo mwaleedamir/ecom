@@ -8,14 +8,14 @@ const Cards = ({ cards, className}) => {
       {cards.map(card =>
         <Link
           to={card.link}
-          className=" rounded-md bg-white self-center "
+          className=" flex flex-col rounded-md bg-white self-center "
           key={uuidv4()}
         >
           <img className="h-[70%] p-1 " src={card.img} alt="Card Image" />
           <p className="text-sm px-1">
             {card.desc}
           </p>
-          <div className="flex justify-start gap-1 px-2 items-center ">
+          <div className="flex justify-between gap-1 px-2 items-center ">
             <p className="text-sm font-extralight py-2">AED </p>
             <p className="font-bold">
               {card.price}
@@ -26,7 +26,10 @@ const Cards = ({ cards, className}) => {
             <p className="text-green-200">
               {card.persent}
             </p>
+            <p> rating: {card.rating}</p>
           </div>
+            <p className="m-auto text-md font-bold p-2">{card.brand}</p>
+
         </Link>
       )}
     </div>

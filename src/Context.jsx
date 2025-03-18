@@ -20,8 +20,8 @@ export const DataProvider = ({ children }) => {
     minPrice:"",
     maxPrice:"",
   })
-  const [slider ,setSlider ]= useState({rating:""})
-  // , id:uuidv4()
+  const [slider ,setSlider ]= useState(0)
+  const [filterBrand, setFilterBrand] = useState([])
 
   const addItem = (newItem) => {
     setItems(prevItems => [...prevItems, { ...newItem}]);
@@ -43,7 +43,11 @@ export const DataProvider = ({ children }) => {
   }
 
   const addSliderFilter = (slide) => {
-    setSlider(prev => ({...prev , rating:slide}))
+    setSlider(slide)
+  }
+
+  const addFilterBrand = (brand) =>{
+    setFilterBrand(prev=> [...prev , brand])
   }
   const value = {
     items,
@@ -55,7 +59,9 @@ export const DataProvider = ({ children }) => {
     priceFilter,
     addPriceFilter,
     addSliderFilter,
-    slider
+    addFilterBrand,
+    filterBrand,
+    slider,
   };
   
   return (

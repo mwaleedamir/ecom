@@ -19,7 +19,13 @@ import { useData } from "../Context";
 const SecondPageCards = () => {
   const [filteredArray, setFilterArray] = useState([]);
 
-  const { addItem, selectedFilter, priceFilter, slider } = useData();
+  const {
+    addItem,
+    selectedFilter,
+    priceFilter,
+    slider,
+    filterBrand
+  } = useData();
 
   const cards = [
     {
@@ -29,7 +35,8 @@ const SecondPageCards = () => {
       uprice: 23,
       persent: "60%",
       link: "/filter",
-      rating: 0.3
+      rating: 0.5,
+      brand: "nike"
     },
     {
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
@@ -38,7 +45,8 @@ const SecondPageCards = () => {
       uprice: 23,
       persent: "60%",
       link: "/filter",
-      rating: 0.5
+      rating: 1,
+      brand: "nike"
     },
     {
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
@@ -47,7 +55,8 @@ const SecondPageCards = () => {
       uprice: 23,
       persent: "60%",
       link: "/filter",
-      rating: 3.3
+      rating: 1.5,
+      brand: "adidas"
     },
     {
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
@@ -56,7 +65,8 @@ const SecondPageCards = () => {
       uprice: 23,
       persent: "60%",
       link: "/filter",
-      rating: 3.8
+      rating: 2,
+      brand: "adidas"
     },
     {
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
@@ -65,7 +75,8 @@ const SecondPageCards = () => {
       uprice: 23,
       persent: "60%",
       link: "/filter",
-      rating: 0.9
+      rating: 2.5,
+      brand: "generic"
     },
     {
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
@@ -74,7 +85,8 @@ const SecondPageCards = () => {
       uprice: 23,
       persent: "60%",
       link: "/filter",
-      rating: 2
+      rating: 3,
+      brand: "generic"
     },
     {
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
@@ -83,7 +95,8 @@ const SecondPageCards = () => {
       uprice: 23,
       persent: "60%",
       link: "/filter",
-      rating: 2.6
+      rating: 3.5,
+      brand: ""
     },
     {
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
@@ -92,7 +105,8 @@ const SecondPageCards = () => {
       uprice: 23,
       persent: "60%",
       link: "/filter",
-      rating: 2.1
+      rating: 4,
+      brand: "puma"
     },
     {
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
@@ -101,7 +115,8 @@ const SecondPageCards = () => {
       uprice: 23,
       persent: "60%",
       link: "/filter",
-      rating: 4
+      rating: 4,
+      brand: "puma"
     },
     {
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
@@ -110,7 +125,8 @@ const SecondPageCards = () => {
       uprice: 23,
       persent: "60%",
       link: "/filter",
-      rating: 2.3
+      rating: 3.5,
+      brand: "generic"
     },
     {
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
@@ -119,7 +135,8 @@ const SecondPageCards = () => {
       uprice: 23,
       persent: "60%",
       link: "/filter",
-      rating: 3.9
+      rating: 3,
+      brand: "generic"
     },
     {
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
@@ -128,7 +145,8 @@ const SecondPageCards = () => {
       uprice: 23,
       persent: "60%",
       link: "/filter",
-      rating: 1.4
+      rating: 2.5,
+      brand: "generic"
     },
     {
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
@@ -137,7 +155,8 @@ const SecondPageCards = () => {
       uprice: 23,
       persent: "60%",
       link: "/filter",
-      rating: 1.5
+      rating: 2,
+      brand: "adidas"
     },
     {
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
@@ -146,7 +165,8 @@ const SecondPageCards = () => {
       uprice: 23,
       persent: "60%",
       link: "/filter",
-      rating: 2.4
+      rating: 2,
+      brand: "adidas"
     }
   ];
 
@@ -158,25 +178,44 @@ const SecondPageCards = () => {
     () => {
       if (selectedFilter.length <= 0) {
         setFilterArray(cards);
-      } else if (selectedFilter.includes("price")) {
+      }
+      if (selectedFilter.includes("price")) {
         setFilterArray(
-          cards.filter(
-            card =>
-              card.price >= priceFilter.minPrice &&
-              card.price <= priceFilter.maxPrice
-          )
-        );
-      } else if (selectedFilter.includes("rating")) {
-        setFilterArray(
-          cards.filter(card => Number(card.rating) === Number(slider.rating))
+          filteredArray
+            ? filteredArray.filter(
+                card =>
+                  card.price >= priceFilter.minPrice &&
+                  card.price <= priceFilter.maxPrice
+              )
+            : cards.filter(
+                card =>
+                  card.price >= priceFilter.minPrice &&
+                  card.price <= priceFilter.maxPrice
+              )
         );
       }
+      if (selectedFilter.includes("rating")) {
+        setFilterArray(
+          filteredArray ? 
+          filteredArray.filter(card => Number(card.rating) === Number(slider)):
+          cards.filter(card => Number(card.rating) === Number(slider))
+        );
+      }
+      if (selectedFilter.includes("brand")) {
+        
+        setFilterArray(
+          filteredArray ? 
+          filteredArray.filter(item => filterBrand.includes(item.brand)):
+          cards.filter(item => filterBrand.includes(item.brand))
+        )
+
+        console.log("filteredArray in sec", filteredArray);
+      }
     },
-    [selectedFilter]
+    [selectedFilter, slider, priceFilter, filterBrand]
   );
 
   const className = { className: "p-2 grid grid-cols-5 gap-3" };
-
 
   return (
     <div className="bg-gray-100">

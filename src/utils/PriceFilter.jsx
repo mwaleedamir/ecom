@@ -7,7 +7,7 @@ const PriceFilter = () => {
     maxPrice: ""
   });
 
-  const { filters, selectedFilter, priceFilter, addPriceFilter } = useData();
+  const { filters, addPriceFilter,priceFilter } = useData();
 
   const handleClick = () => {
     addPriceFilter(price);
@@ -15,15 +15,16 @@ const PriceFilter = () => {
   };
 
   useEffect(()=>{
-    setPrice(price)
-  },[])
+    setPrice(priceFilter)
+  },[priceFilter])
 
   return (
     <div>
       <div className="flex justify-between items-center gap-2 mt-3">
         <input
+        
           type="number"
-          value={price.minPrice}
+          value={price.minPrice }
           onChange={e =>
             setPrice(prev => ({ ...prev, minPrice: e.target.value }))}
           className="rounded-md w-20 border-gray-100 border-2 outline-0 px-2"
