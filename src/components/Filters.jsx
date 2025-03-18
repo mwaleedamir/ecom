@@ -36,32 +36,34 @@ const Filters = () => {
         <button
           key={uuidv4()}
           onClick={funcToggle}
-          className="flex items-center justify-between px-5 py-1 rounded-md border-1 border-blue-400 bg-blue-100"
+          className="flex items-center relative justify-between px-5 py-1 rounded-md border-1 border-blue-400 bg-blue-100"
         >
-          
           {list === "price" &&
             <div className="flex justify-between gap-3 items-center px-2 ">
               <MdOutlinePriceChange />
               <p>Price ( AED )</p>
               {toggle ? <FaChevronDown /> : <FaChevronUp />}
+              {toggle &&
+                <div className=" absolute bg-white w-64 h-40 top-[100%] left-0 px-3 shadow-xl rounded-md">
+                  <div className="flex justify-between px-3 py-2">
+                    <p>Price </p>
+                    <button
+                      onClick={() => handleClear()}
+                      className="text-green-300"
+                    >
+                      clear{" "}
+                    </button>
+                  </div>
+                  <PriceFilter />
+                </div>}
             </div>}
-          {list === "rating" && 
-          <div className="flex justify-between items-center px-2">
-            <p>Rating</p>
-            {toggle ? <FaChevronDown /> : <FaChevronUp />}
+          {list === "rating" &&
+            <div className="flex justify-between items-center px-2">
+              <p>Rating</p>
+              {toggle ? <FaChevronDown /> : <FaChevronUp />}
             </div>}
         </button>
       )}
-      {toggle &&
-        <div className=" absolute bg-white w-64 h-40 top-[100%] left-0 px-3 shadow-xl rounded-md">
-          <div className="flex justify-between px-3 py-2">
-            <p>Price </p>
-            <button onClick={() => handleClear()} className="text-green-300">
-              clear{" "}
-            </button>
-          </div>
-          <PriceFilter />
-        </div>}
     </div>
   );
 };

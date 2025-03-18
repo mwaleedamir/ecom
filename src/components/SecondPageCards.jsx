@@ -19,12 +19,7 @@ import { useData } from "../Context";
 const SecondPageCards = () => {
   const [filteredArray, setFilterArray] = useState([]);
 
-  const {
-    addItem,
-    selectedFilter,
-    priceFilter,
-    slider
-  } = useData();
+  const { addItem, selectedFilter, priceFilter, slider } = useData();
 
   const cards = [
     {
@@ -164,30 +159,17 @@ const SecondPageCards = () => {
       if (selectedFilter.length <= 0) {
         setFilterArray(cards);
       } else if (selectedFilter.includes("price")) {
-        for (let i = 0; i < selectedFilter.length; i++) {
-          if (selectedFilter[i] === "price") {
-            setFilterArray(
-              cards.filter(
-                card =>
-                  card.price >= priceFilter.minPrice &&
-                  card.price <= priceFilter.maxPrice
-              )
-            );
-          }
-        }
-      }
-      else if(selectedFilter.includes("rating")){
-        for (let i = 0; i < selectedFilter.length; i++) {
-          if (selectedFilter[i] === "rating") {
-            setFilterArray(
-              cards.filter(
-                card => card.rating === slider.value
-              )
-            )
-            console.log("Slider",slider.value)
-          }
-        }
-          
+        setFilterArray(
+          cards.filter(
+            card =>
+              card.price >= priceFilter.minPrice &&
+              card.price <= priceFilter.maxPrice
+          )
+        );
+      } else if (selectedFilter.includes("rating")) {
+        setFilterArray(
+          cards.filter(card => Number(card.rating) === Number(slider.rating))
+        );
       }
     },
     [selectedFilter]
@@ -195,7 +177,6 @@ const SecondPageCards = () => {
 
   const className = { className: "p-2 grid grid-cols-5 gap-3" };
 
-  console.log(">>>>> filter check", filteredArray);
 
   return (
     <div className="bg-gray-100">
