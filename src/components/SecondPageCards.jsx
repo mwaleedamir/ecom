@@ -27,6 +27,9 @@ const SecondPageCards = () => {
     filterBrand
   } = useData();
 
+  console.log({selectedFilter})
+  console.log({priceFilter})
+
   const cards = [
     {
       desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
@@ -181,35 +184,24 @@ const SecondPageCards = () => {
       }
       if (selectedFilter.includes("price")) {
         setFilterArray(
-          filteredArray
-            ? filteredArray.filter(
+           cards.filter(
                 card =>
                   card.price >= priceFilter.minPrice &&
                   card.price <= priceFilter.maxPrice
               )
-            : cards.filter(
-                card =>
-                  card.price >= priceFilter.minPrice &&
-                  card.price <= priceFilter.maxPrice
-              )
-        );
+        )
       }
       if (selectedFilter.includes("rating")) {
         setFilterArray(
-          filteredArray ? 
-          filteredArray.filter(card => Number(card.rating) === Number(slider)):
-          cards.filter(card => Number(card.rating) === Number(slider))
+         cards.filter(card => Number(card.rating) === Number(slider))
         );
       }
       if (selectedFilter.includes("brand")) {
         
         setFilterArray(
-          filteredArray ? 
-          filteredArray.filter(item => filterBrand.includes(item.brand)):
-          cards.filter(item => filterBrand.includes(item.brand))
+         cards.filter(item => filterBrand.includes(item.brand))
         )
 
-        console.log("filteredArray in sec", filteredArray);
       }
     },
     [selectedFilter, slider, priceFilter, filterBrand]
