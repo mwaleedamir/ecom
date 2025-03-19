@@ -32,6 +32,7 @@ const BrandFilter = () => {
     filters("brand")
     console.log("brand",brand)
     console.log("brand details",checked)
+    console.log("brafilterBrand details",filterBrand)
   }
   
   useEffect((brand)=>{

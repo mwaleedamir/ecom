@@ -27,12 +27,12 @@ const SecondPageCards = () => {
     filterBrand
   } = useData();
 
-  console.log({selectedFilter})
-  console.log({priceFilter})
+  console.log({ selectedFilter });
+  console.log({ priceFilter });
 
   const cards = [
     {
-      desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
+      desc: "Nike Air Max Running Shoes - Lightweight cushioning with breathable mesh upper for ultimate comfort during your runs.",
       img: nike1,
       price: 12,
       uprice: 23,
@@ -42,7 +42,7 @@ const SecondPageCards = () => {
       brand: "nike"
     },
     {
-      desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
+      desc: "Nike Revolution 6 - Durable training shoes with foam midsole for responsive cushioning and flexible traction pattern.",
       img: nike2,
       price: 89,
       uprice: 23,
@@ -52,7 +52,7 @@ const SecondPageCards = () => {
       brand: "nike"
     },
     {
-      desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
+      desc: "Adidas Ultraboost 22 - Premium running shoes with responsive Boost midsole and adaptive Primeknit upper for a sock-like fit.",
       img: nike3,
       price: 90,
       uprice: 23,
@@ -62,7 +62,7 @@ const SecondPageCards = () => {
       brand: "adidas"
     },
     {
-      desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
+      desc: "Adidas Originals Superstar - Iconic shell toe sneakers with leather upper and classic three-stripe design.",
       img: nike4,
       price: 40,
       uprice: 23,
@@ -72,7 +72,7 @@ const SecondPageCards = () => {
       brand: "adidas"
     },
     {
-      desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
+      desc: "All-Purpose Canvas Sneakers - Casual everyday shoes with durable cotton canvas upper and rubber outsole for reliable traction.",
       img: g1,
       price: 10,
       uprice: 23,
@@ -82,7 +82,7 @@ const SecondPageCards = () => {
       brand: "generic"
     },
     {
-      desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
+      desc: "Classic Slip-On Loafers - Comfortable casual shoes with faux leather construction and cushioned insole for all-day wear.",
       img: g2,
       price: 20,
       uprice: 23,
@@ -92,7 +92,7 @@ const SecondPageCards = () => {
       brand: "generic"
     },
     {
-      desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
+      desc: "Minimalist Walking Shoes - Flexible and lightweight design with memory foam insole for natural movement and comfort.",
       img: g3,
       price: 21,
       uprice: 23,
@@ -102,7 +102,7 @@ const SecondPageCards = () => {
       brand: ""
     },
     {
-      desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
+      desc: "Puma RS-X Bold - Chunky retro-inspired sneakers with bold color blocking and the signature RS cushioning technology.",
       img: g4,
       price: 50,
       uprice: 23,
@@ -112,7 +112,7 @@ const SecondPageCards = () => {
       brand: "puma"
     },
     {
-      desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
+      desc: "Puma Softride Running Shoes - Performance footwear with Softride midsole for extreme cushioning and comfort during workouts.",
       img: g5,
       price: 40,
       uprice: 23,
@@ -122,7 +122,7 @@ const SecondPageCards = () => {
       brand: "puma"
     },
     {
-      desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
+      desc: "Premium Hiking Boots - Waterproof construction with rugged outsole and ankle support for challenging outdoor trails.",
       img: nike6,
       price: 30,
       uprice: 23,
@@ -132,7 +132,7 @@ const SecondPageCards = () => {
       brand: "generic"
     },
     {
-      desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
+      desc: "Casual Canvas Deck Shoes - Lightweight slip-ons with breathable lining and flexible rubber sole for everyday comfort.",
       img: i1,
       price: 28,
       uprice: 23,
@@ -142,7 +142,7 @@ const SecondPageCards = () => {
       brand: "generic"
     },
     {
-      desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
+      desc: "Trail Running Shoes - All-terrain footwear with aggressive tread pattern and protective toe cap for outdoor adventures.",
       img: a1,
       price: 58,
       uprice: 23,
@@ -152,7 +152,7 @@ const SecondPageCards = () => {
       brand: "generic"
     },
     {
-      desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
+      desc: "Adidas Gazelle - Classic suede sneakers with contrasting three-stripe design and comfortable textile lining.",
       img: a2,
       price: 78,
       uprice: 23,
@@ -162,7 +162,7 @@ const SecondPageCards = () => {
       brand: "adidas"
     },
     {
-      desc: "lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,",
+      desc: "Adidas Samba Classic - Iconic indoor soccer shoes with premium leather upper and gum rubber outsole for excellent traction.",
       img: a3,
       price: 70,
       uprice: 23,
@@ -176,36 +176,31 @@ const SecondPageCards = () => {
   useEffect(() => {
     addItem(cards[0]);
   }, []);
+  useEffect(() => {
+    let result = [...cards];
 
-  useEffect(
-    () => {
-      if (selectedFilter.length <= 0) {
-        setFilterArray(cards);
-      }
-      if (selectedFilter.includes("price")) {
-        setFilterArray(
-           cards.filter(
-                card =>
-                  card.price >= priceFilter.minPrice &&
-                  card.price <= priceFilter.maxPrice
-              )
-        )
-      }
-      if (selectedFilter.includes("rating")) {
-        setFilterArray(
-         cards.filter(card => Number(card.rating) === Number(slider))
-        );
-      }
-      if (selectedFilter.includes("brand")) {
-        
-        setFilterArray(
-         cards.filter(item => filterBrand.includes(item.brand))
-        )
+    if (selectedFilter.includes("price")) {
+      result = result.filter(
+        card => 
+          card.price >= priceFilter.minPrice && 
+          card.price <= priceFilter.maxPrice
+      );
+    }
 
-      }
-    },
-    [selectedFilter, slider, priceFilter, filterBrand]
-  );
+    if (selectedFilter.includes("rating")) {
+      result = result.filter(card => Number(card.rating) === Number(slider));
+    }
+
+    if (selectedFilter.includes("brand") && filterBrand.length > 0) {
+      result = result.filter(item => filterBrand.includes(item.brand));
+    }
+
+    if (selectedFilter.length === 0) {
+      result = cards;
+    }
+
+    setFilterArray(result);
+  }, [selectedFilter, slider, priceFilter, filterBrand]);
 
   const className = { className: "p-2 grid grid-cols-5 gap-3" };
 

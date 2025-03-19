@@ -21,7 +21,7 @@ export const DataProvider = ({ children }) => {
     maxPrice:"",
   })
   const [slider ,setSlider ]= useState(0)
-  const [filterBrand, setFilterBrand] = useState([])
+  const [filterBrand, setFilterBrand] = useState([""])
 
   const addItem = (newItem) => {
     setItems(prevItems => [...prevItems, { ...newItem}]);
