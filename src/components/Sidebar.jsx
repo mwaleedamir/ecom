@@ -6,7 +6,7 @@ const Sidebar = () => {
   const lists = [{ name: "price" }, { name: "brand" },{name: "rating"}];
   return (
     <div className="flex">
-      <aside className="min-h-screen min-w-64 px-2 py-10">
+      <aside className="min-h-screen min-w-64 px-2 py-10 cursor-pointer">
         {lists.map(list =>
           <div key={uuidv4()}>
             <SidebarItems name={list.name} />

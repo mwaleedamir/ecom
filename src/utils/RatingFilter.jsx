@@ -27,7 +27,6 @@ const RatingFilter = () => {
         min={0}
         max={4}
         step={0.5}
-        // defaultValue={0}
         onChange={e => setRating(e.target.value)}
         onMouseUp={handleSelect}
       />

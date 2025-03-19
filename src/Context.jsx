@@ -1,5 +1,4 @@
 import React, { createContext, useState, useContext } from 'react';
-// import { v4 as uuidv4 } from "uuid";
 
 const DataContext = createContext();
 
@@ -13,20 +12,21 @@ export const useData = () => {
 
 export const DataProvider = ({ children }) => {
 
-  const [items, setItems] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState([]);
-  const [filteredItems ,setFilteredItems ]= useState([])
   const [priceFilter ,setPriceFilter ] =useState({
     minPrice:"",
     maxPrice:"",
   })
   const [slider ,setSlider ]= useState(0)
-  const [filterBrand, setFilterBrand] = useState([""])
-
-  const addItem = (newItem) => {
-    setItems(prevItems => [...prevItems, { ...newItem}]);
-  };
-
+  
+  const [checkBoxes, setCheckBoxes] = useState([
+    { brand: "PUMA", isChecked: false },
+    { brand: "Adidas", isChecked: false },
+    { brand: "Nike", isChecked: false },
+    { brand: "Generic", isChecked: false }
+  ]);
+  const [filterBrand, setFilterBrand] = useState([])
+  
   const filters = (newFilter) =>{
     if(!selectedFilter.includes(newFilter)){
       setSelectedFilter(selectedFilter => 
@@ -34,10 +34,6 @@ export const DataProvider = ({ children }) => {
       }
   }
  
-  const addFilteredItems = (newItems) => {
-    setFilteredItems(prevItems => [...prevItems,{...newItems }])
-  }
-
   const addPriceFilter =(Price) =>{
     setPriceFilter(prevprice => ({ ...prevprice , minPrice: Price.minPrice , maxPrice: Price.maxPrice}))
   }
@@ -46,22 +42,40 @@ export const DataProvider = ({ children }) => {
     setSlider(slide)
   }
 
-  const addFilterBrand = (brand) =>{
-    setFilterBrand(prev=> [...prev , brand])
-  }
+  const toggleCheckbox = (brandName,checked) => {
+    setCheckBoxes((prev) =>
+      prev.map((item) =>
+        item.brand === brandName
+          ? { ...item, isChecked: !item.isChecked }
+          : item
+        )
+      );
+      let data
+      if(!checked ){
+        addFilterBrand(brandName)
+        filters("brand")
+      }else{
+        data = filterBrand.pop(brandName);
+        setFilterBrand(prev => [...prev,filterBrand]);
+      }
+    };
+    
+    const addFilterBrand = (brand) =>{
+      setFilterBrand(prev=> [...prev , brand?.toLowerCase()])
+      
+    }
+    
   const value = {
-    items,
-    addItem,
     selectedFilter,
     filters,
-    filteredItems,
-    addFilteredItems,
     priceFilter,
     addPriceFilter,
     addSliderFilter,
     addFilterBrand,
     filterBrand,
     slider,
+    checkBoxes,
+    toggleCheckbox
   };
   
   return (

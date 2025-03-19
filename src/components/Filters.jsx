@@ -22,7 +22,7 @@ const Filters = () => {
       {selectedFilter.map(list =>
         <div key={uuidv4()} className="relative">
           <button
-            onMouseEnter={() => handleToggle(list)}
+            onClick={() => handleToggle(list)}
             className="flex items-center justify-between px-5 py-1 rounded-md border-1 border-blue-400 bg-blue-100"
           >
             {list === "price" &&

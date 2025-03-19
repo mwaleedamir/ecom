@@ -2,12 +2,11 @@ import React from "react";
 import { useData } from "../Context";
 
 const BrandFilterClear = () => {
-  const { addSliderFilter, slider, selectedFilter, addFilterBrand,
-    filterBrand, } = useData();
+  const { selectedFilter, addFilterBrand } = useData();
 
   const handleBrandClear = () => {
     selectedFilter.pop("rating");
-    addFilterBrand(prev=> [...prev,[]]);
+    addFilterBrand(prev => [...prev, []]);
   };
 
   return (

@@ -1,9 +1,9 @@
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { v4 as uuidv4 } from "uuid";
 
 const CarouselSlider = ({ slider, images, className }) => {
-  console.log("any", slider);
   return (
     
       <div className={className}>
@@ -13,7 +13,7 @@ const CarouselSlider = ({ slider, images, className }) => {
           infiniteLoop={slider.infiniteLoop}
           showThumbs={slider.showThumbs}
         >
-          {images.map(img => <img src={img.img} alt={img.alt} />)}
+          {images.map(img => <img key={uuidv4()} src={img.img} alt={img.alt} />)}
         </Carousel>
       </div>
   

@@ -8,9 +8,7 @@ const PriceButtonClear = () => {
   } = useData();
 
   const handlePriceClear = () => {
-    console.log("before",selectedFilter)
     selectedFilter.pop("price");
-    console.log("after",selectedFilter)
     addPriceFilter({
       minPrice: "",
       maxPrice: ""
@@ -19,7 +17,7 @@ const PriceButtonClear = () => {
 
   return (
     <div>
-      <button onClick={() => handlePriceClear()} className="text-green-300">
+      <button onClick={() => handlePriceClear()} className="text-green-300 hover:text-green-400 cursor-pointer">
         clear{" "}
       </button>
     </div>
