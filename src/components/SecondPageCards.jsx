@@ -8,39 +8,36 @@ const SecondPageCards = () => {
   const {
     selectedFilter,
     priceFilter,
-    slider,
+    rating,
     filterBrand
   } = useData();
-
 
   useEffect(
     () => {
       let result = [...cards];
 
-      if (selectedFilter.includes("price")) {
-        result = result.filter(
-          card =>
-            card.price >= priceFilter.minPrice &&
-            card.price <= priceFilter.maxPrice
-        );
-      }
-
-      if (selectedFilter.includes("rating")) {
-        result = result.filter(card => Number(card.rating) === Number(slider));
-      }
-
-      if (selectedFilter.includes("brand") && filterBrand.length > 0) {
-        result = result.filter(item => filterBrand.includes(item.brand));
-      }
-
-      if (selectedFilter.length === 0) {
+      if (selectedFilter.length <= 0) {
         result = cards;
-      }
+      }else{
 
+        if (selectedFilter.includes("price")) {
+          result = result.filter(
+            card =>
+              card.price >= priceFilter.minPrice &&
+            card.price <= priceFilter.maxPrice
+          );
+        }
+        
+        if (selectedFilter.includes("rating")) {
+          result = result.filter(card => Number(card.rating) === Number(rating));
+        }
+        
+        if (selectedFilter.includes("brand") && filterBrand.length > 0) {
+          result = result.filter(item => filterBrand.includes(item.brand));
+        }
+      }
       setFilterArray(result);
-    },
-    [selectedFilter, slider, priceFilter, filterBrand]
-  );
+    },[selectedFilter, rating, priceFilter, filterBrand]);
 
   const className = { className: "p-2 grid grid-cols-5 gap-3" };
 

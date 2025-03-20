@@ -2,11 +2,10 @@ import React from "react";
 import { useData } from "../Context";
 
 const SliderFilterClear = () => {
-  const { addSliderFilter, selectedFilter } = useData();
+  const { clearRatingFilter } = useData();
 
   const handleRatingClear = () => {
-    selectedFilter.pop("rating");
-    addSliderFilter(0);
+    clearRatingFilter()
   };
 
   return (

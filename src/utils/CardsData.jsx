@@ -23,7 +23,7 @@ export const cards = [
     persent: "60%",
     link: "/filter",
     rating: 0.5,
-    brand: "nike"
+    brand: "Nike"
   },
   {
     desc:
@@ -34,7 +34,7 @@ export const cards = [
     persent: "60%",
     link: "/filter",
     rating: 1,
-    brand: "nike"
+    brand: "Nike"
   },
   {
     desc:
@@ -45,7 +45,7 @@ export const cards = [
     persent: "60%",
     link: "/filter",
     rating: 1.5,
-    brand: "adidas"
+    brand: "Adidas"
   },
   {
     desc:
@@ -56,7 +56,7 @@ export const cards = [
     persent: "60%",
     link: "/filter",
     rating: 2,
-    brand: "adidas"
+    brand: "Adidas"
   },
   {
     desc:
@@ -67,7 +67,7 @@ export const cards = [
     persent: "60%",
     link: "/filter",
     rating: 2.5,
-    brand: "generic"
+    brand: "Generic"
   },
   {
     desc:
@@ -78,7 +78,7 @@ export const cards = [
     persent: "60%",
     link: "/filter",
     rating: 3,
-    brand: "generic"
+    brand: "Generic"
   },
   {
     desc:
@@ -89,7 +89,7 @@ export const cards = [
     persent: "60%",
     link: "/filter",
     rating: 3.5,
-    brand: ""
+    brand: "Adidas"
   },
   {
     desc:
@@ -100,7 +100,7 @@ export const cards = [
     persent: "60%",
     link: "/filter",
     rating: 4,
-    brand: "puma"
+    brand: "PUMA"
   },
   {
     desc:
@@ -111,7 +111,7 @@ export const cards = [
     persent: "60%",
     link: "/filter",
     rating: 4,
-    brand: "puma"
+    brand: "PUMA"
   },
   {
     desc:
@@ -122,7 +122,7 @@ export const cards = [
     persent: "60%",
     link: "/filter",
     rating: 3.5,
-    brand: "generic"
+    brand: "Generic"
   },
   {
     desc:
@@ -133,7 +133,7 @@ export const cards = [
     persent: "60%",
     link: "/filter",
     rating: 3,
-    brand: "generic"
+    brand: "Generic"
   },
   {
     desc:
@@ -144,7 +144,7 @@ export const cards = [
     persent: "60%",
     link: "/filter",
     rating: 2.5,
-    brand: "generic"
+    brand: "Generic"
   },
   {
     desc:
@@ -155,7 +155,7 @@ export const cards = [
     persent: "60%",
     link: "/filter",
     rating: 2,
-    brand: "adidas"
+    brand: "Adidas"
   },
   {
     desc:
@@ -166,6 +166,6 @@ export const cards = [
     persent: "60%",
     link: "/filter",
     rating: 2,
-    brand: "adidas"
+    brand: "Adidas"
   }
 ];

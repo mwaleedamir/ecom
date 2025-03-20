@@ -2,17 +2,10 @@ import React from "react";
 import { useData } from "../Context";
 
 const PriceButtonClear = () => {
-  const {
-    selectedFilter,
-    addPriceFilter,
-  } = useData();
+  const { clearPriceFilter } = useData();
 
   const handlePriceClear = () => {
-    selectedFilter.pop("price");
-    addPriceFilter({
-      minPrice: "",
-      maxPrice: ""
-    });
+    clearPriceFilter()
   };
 
   return (

@@ -2,16 +2,18 @@ import React from "react";
 import { useData } from "../Context";
 
 const BrandFilterClear = () => {
-  const { selectedFilter, addFilterBrand } = useData();
+  const { resetCheckboxes } = useData();
 
   const handleBrandClear = () => {
-    selectedFilter.pop("rating");
-    addFilterBrand(prev => [...prev, []]);
+    resetCheckboxes();
   };
 
   return (
     <div>
-      <button onClick={() => handleBrandClear()} className="text-green-300">
+      <button
+        onClick={() => handleBrandClear()}
+        className="text-green-300 cursor-pointer hover:text-green-400"
+      >
         clear{" "}
       </button>
     </div>

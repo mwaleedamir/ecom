@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import { SlBasket, SlHeart } from "react-icons/sl";
 import { IoPersonOutline } from "react-icons/io5";
 import flag from "../assets/flag.svg";
+import logo from "../assets/noon-logo.svg"
 
 const Navbar = () => {
   return (
     <div className="flex justify-between items-center bg-amber-200 gap-1 px-4 py-3">
+      <img className="w-20" src={logo} alt="Noon-logo" />
       <div className="flex gap-0.5">
         <img src={flag} alt="flag" />
         <div className="flex flex-col">

@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useData } from "../Context";
 
 const RatingFilter = () => {
-  const [rating, setRating] = useState(0);
+  const { handleAddFilter, setRating, rating, setSelectedFilter } = useData();
 
-  const { filters, addSliderFilter, slider } = useData();
-
-  const handleSelect = () => {
-    filters("rating");
-    addSliderFilter(rating);
+  const handleSelect = e => {
+    if (e > 0) {
+      handleAddFilter("rating");
+      setRating(e);
+    } else {
+      setRating(0);
+      setSelectedFilter(prev => prev.filter(pre => pre !== "rating"));
+    }
   };
-  
-  useEffect(() => {
-    setRating(slider);
-  }, [slider]);
 
   return (
     <div className="p-4 w-full">
       <p className="text-sm text-green-500">
-        {slider} stars or more
+        {rating} stars or more
       </p>
       <input
         type="range"
@@ -27,8 +26,7 @@ const RatingFilter = () => {
         min={0}
         max={4}
         step={0.5}
-        onChange={e => setRating(e.target.value)}
-        onMouseUp={handleSelect}
+        onChange={e => handleSelect(e.target.value)}
       />
     </div>
   );
